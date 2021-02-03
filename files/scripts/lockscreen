@@ -1,0 +1,61 @@
+#!/bin/sh
+icon="$HOME/Downloads/lockedy.jpg"
+tmpbg='/tmp/screen.png'
+maim -m 1 "$tmpbg"
+clock_offset_x=300
+clock_offset_y=200
+
+dimensions=$(xdpyinfo | grep dimensions | awk '{print $2}')
+x_dim=${dimensions%x*}
+y_dim=${dimensions#*x}
+
+d_x_loc=$(( $x_dim - $clock_offset_x ))
+d_y_loc=$(( $y_dim - $clock_offset_y ))
+
+canvas_size="500"
+canvas_rad="$(( $canvas_size / 2))"
+circ_size="270"
+circ_rad="$(( $canvas_rad - ($circ_size/2) ))"
+
+circ_offset_x=$(( $d_x_loc - $canvas_rad ))
+circ_offset_y=$(( $d_y_loc - $canvas_rad - 10 ))
+
+convert "$tmpbg" -scale 10% -scale 1000% "$tmpbg" # Pixelate
+
+[ -f $icon ] && convert "$tmpbg" "$icon" -gravity center -composite -matte "$tmpbg"
+
+convert -size "$canvas_size"x"$canvas_size" canvas:transparent -fill "#282a36" \
+	-draw "circle $canvas_rad,$canvas_rad $canvas_rad,$circ_rad" \
+	-scale 50% -blur 0x10 -resize 200% \
+	-alpha set -background none -channel A -evaluate multiply 0.90 +channel /tmp/mask.png
+
+convert "$tmpbg" /tmp/mask.png -geometry +$circ_offset_x+$circ_offset_y -composite -matte "$tmpbg"
+
+i3lock --nofork                 	\
+    -c 00000000				\
+    --image=$tmpbg			\
+    --ignore-empty-password		\
+    					\
+    --clock				\
+    --timecolor=eceff4ff		\
+    --timestr="%H:%M"			\
+    --timesize=50			\
+    --timepos="$d_x_loc:$d_y_loc"	\
+    --timecolor=ffffff			\
+    					\
+    --datecolor=fe90ec			\
+    --indicator				\
+    --bar-indicator			\
+    --bar-position="1070"		\
+    --bar-base-width="10"		\
+    --bar-orientation=horizontal	\
+    --bar-color=2e3440			\
+    --bshlcolor=5e81ac			\
+    --keyhlcolor=a3be8c			\
+    					\
+    --verifsize=150			\
+    --verifcolor=0000ff			\
+    --wrongtext="No entry"		\
+    --wrongsize=150			\
+    --wrongcolor=ff0000			\
+

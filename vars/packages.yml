@@ -1,0 +1,62 @@
+---
+packages_to_install:
+    - pkg_name: vim
+      description: "The best editor"
+    - pkg_name: curl
+      description: "To test web stuff"
+    - pkg_name: wget
+      description: "To get web stuff"
+    - pkg_name: redshift
+      description: "To sleep well at night"
+    - pkg_name: tmux
+      description: "Terminal multiplexing"
+    - pkg_name: zathura
+      description: "To read documents"
+    - pkg_name: fzf
+      description: "Fuzzy finder"
+    - pkg_name: ranger
+      description: "To browse files"
+    - pkg_name: keepassxc
+      description: "To store my passwords"
+    - pkg_name: calcurse
+      description: "CLI calendar"
+    - pkg_name: feh
+      description: "To set wallpaper"
+    - pkg_name: htop
+      description: "To check processes and stuff"
+    - pkg_name: xclip
+      description: "To include clipboard in scripts"
+    - pkg_name: maim
+      description: "To take screenshots of desktop"
+    - pkg_name: xclip
+      description: "To include clipboard in scripts"
+    - pkg_name: imagemagick
+      description: "Imagemagick library"
+    - pkg_name: man-db
+      description: "The manual"
+    - pkg_name: i3-gaps
+      description: "i3 improved"
+    - pkg_name: i3blocks
+      description: "To get i3blocks"
+    - pkg_name: xorg-server
+      description: "for Xorg"
+    - pkg_name: xorg-xinit
+      description: "starts the X server"
+    - pkg_name: xcompmgr
+      description: "Lightweight compositor"
+    - pkg_name: bash-completion
+      description: "Completion for bash"
+    - pkg_name: dmenu
+      description: "For menu stuff"
+    - pkg_name: ntfs-3g
+      description: "To mount ntfs"
+    - pkg_name: pulseaudio
+      description: "Sound control daemon"
+    - pkg_name: pulsemixer
+      description: "Sound interface"
+    - pkg_name: pamixer
+      description: "CLI control of sound"
+    - pkg_name: brightnessctl
+      description: "To control brightness"
+    - pkg_name: xf86-input-libinput
+      description: "To get touchpad controls"

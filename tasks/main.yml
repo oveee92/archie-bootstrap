@@ -1,0 +1,8 @@
+---
+# tasks file for archie-bootstrap
+- include: install_packages.yml
+  #- include: make_yay.yml
+- include: install_aur.yml
+- include: add_dotfiles.yml
+- include: add_configfiles.yml
+- include: symlinks.yml

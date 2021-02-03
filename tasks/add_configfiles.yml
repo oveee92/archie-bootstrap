@@ -1,0 +1,19 @@
+---
+- include_vars: configfiles.yml
+
+- name: Ensure directory exists
+  file:
+    path: "{{ item.to_directory | dirname }}"
+    state: directory
+    owner: root
+    group: root
+  loop: "{{ configfiles_configuration }}"
+
+- name: Copy dotfiles
+  copy:
+    src: "{{ item.config_name }}"
+    dest: "{{ item.to_directory }}"
+    owner: root
+    group: root
+  loop: "{{ configfiles_configuration }}"
+

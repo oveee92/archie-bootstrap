@@ -1,0 +1,4 @@
+---
+configfiles_configuration:
+  - config_name: configfiles/40-libinput.conf
+    to_directory: "/etc/X11/xorg.conf.d/40-libinput.conf"

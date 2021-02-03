@@ -1,0 +1,22 @@
+#!/bin/sh
+
+case $BLOCK_BUTTON in
+	1) $TERMINAL -e nmtui ;;
+	3) pgrep -x dunst >/dev/null && notify-send \
+		"🌐 Internet module" "\- Click to connect
+📶: wifi connection (with quality)
+🌐: ethernet working
+		" ;;
+esac
+
+[ "$(cat /sys/class/net/w*/operstate)" = 'down' ] &&  \
+[ "$(cat /sys/class/net/e*/operstate)" = 'down' ] && result="❎";
+
+[ "$(cat /sys/class/net/w*/operstate)" = 'up' ] && result="📶";
+[ "$(cat /sys/class/net/e*/operstate)" = 'up' ] && result=echo "🌐";
+[ "$(cat /sys/class/net/w*/operstate)" = 'down' ] &&  \
+[ "$(cat /sys/class/net/w*/operstate)" = 'down' ] && result="❎";
+
+
+echo $result
+

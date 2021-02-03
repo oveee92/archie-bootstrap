@@ -1,0 +1,37 @@
+#!/bin/bash
+# Presents list of all stored password entries
+# Lets you choose which password to send to clipboard
+
+#------Customize----------
+GNUPGHOME="/home/otislevoll/.gnupg"
+password_db="/home/otislevoll/Dropbox/RandomLicenceDatabaseStuff/MY ENTIRE LIFE.kdbx"
+credentials_file="$GNUPGHOME/keepass-credentials.gpg"
+#-------------------------
+
+selection=$( # Fetching the list of avaiable options
+	/usr/bin/gpg -dq "$credentials_file" |		      	           \
+	/usr/bin/keepassxc-cli ls "$password_db"  "General" | 	     \
+	sed '1d'
+)
+chosen=$( # The one you choose
+	echo -e "$selection" |					                             \
+	dmenu -i -l 20 -p "Get credentials for:"
+)
+
+# If none are chosen, exit
+[ "$chosen" != "" ] || exit
+
+if [[ "$selection" == *"$chosen"* ]]
+then
+	username=$(
+		gpg -dq "$credentials_file" | 			                       \
+		keepassxc-cli show -a UserName "$password_db" "$chosen" |  \
+    sed '1d'
+  )
+	notify-send "Password copied to clipboard for 10 seconds. Username is: <b>$username</b>"
+  gpg -dq "$credentials_file" | \
+    keepassxc-cli clip "$password_db" "$chosen" 10
+	echo "$username" | tr -d '\n' | xclip -selection clipboard
+else
+	notify-send "No password found for <b>$chosen</b>"
+fi

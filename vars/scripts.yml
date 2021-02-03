@@ -1,0 +1,10 @@
+---
+scripts_configuration:
+  - script_name: scripts/dmenukeepass
+    to_directory: "/home/{{ user }}/.scripts/tools/dmenukeepass"
+  - script_name: scripts/i3resize
+    to_directory: "/home/{{ user }}/.scripts/i3cmd/i3resize"
+  - script_name: scripts/blocks/
+    to_directory: "/home/{{ user }}/.config/i3blocks/blocks/"
+  - script_name: scripts/lockscreen
+    to_directory: "/home/{{ user }}/.scripts/lockscreen"

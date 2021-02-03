@@ -1,0 +1,8 @@
+---
+- include_vars: packages.yml
+- name: Install packages
+  package:
+    name: "{{ item.pkg_name }}"
+    state: present
+  loop: "{{ packages_to_install }}"
+...

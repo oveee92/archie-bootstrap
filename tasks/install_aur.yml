@@ -1,0 +1,9 @@
+---
+- name: Get package from AUR
+  aur:
+    name: "{{ item }}"
+  become: no
+  loop:
+    - i3lock-color
+    - google-chrome
+    - ttf-joypixels

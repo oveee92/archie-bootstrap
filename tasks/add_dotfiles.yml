@@ -1,0 +1,37 @@
+---
+- include_vars: dotfiles.yml
+
+- name: Ensure directory exists
+  file:
+    path: "{{ item.to_directory | dirname }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  loop: "{{ dotfiles_configuration }}"
+
+- name: Copy dotfiles
+  copy:
+    src: "{{ item.dotfile_name }}"
+    dest: "{{ item.to_directory }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  loop: "{{ dotfiles_configuration }}"
+
+- include_vars: scripts.yml
+
+- name: Ensure directory exists
+  file:
+    path: "{{ item.to_directory | dirname }}"
+    state: directory
+    owner: "{{ user }}"
+    group: "{{ user }}"
+  loop: "{{ scripts_configuration }}"
+
+- name: Copy scripts
+  copy:
+    src: "{{ item.script_name }}"
+    dest: "{{ item.to_directory }}"
+    owner: "{{ user }}"
+    group: "{{ user }}"
+    mode: 0755
+  loop: "{{ scripts_configuration }}"

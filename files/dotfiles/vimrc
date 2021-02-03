@@ -1,0 +1,12 @@
+set background=dark
+set nohlsearch
+set mouse=a
+set number
+set relativenumber
+syntax on
+
+" Enable autocompletion
+set wildmode=longest,list,full
+
+" For yaml, set tab to 2 spaces, autoindent
+autocmd FileType yaml setlocal sw=2 ts=2 et ai

@@ -1,0 +1,12 @@
+---
+- name: Delete .bash_profile
+  file:
+    state: absent
+    path: "/home/{{ user }}/.bash_profile"
+
+- name: Ensure .profile symlink
+  file:
+    state: link
+    src: "/home/{{ user }}/.profile"
+    dest: "/home/{{ user }}/.bash_profile"
+  become: no

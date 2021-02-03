@@ -1,0 +1,20 @@
+---
+- name: Ensure tmp git folder exists
+  file:
+    path: /tmp/git_make
+    state: directory
+  become: no
+
+- name: Get yay
+  git:
+    repo: https://aur.archlinux.org/yay.git
+    dest: /tmp/git_make/yay
+  become: no
+
+- name: Make yay (May take a while because of dependencies)
+  shell: makepkg -si --noconfirm
+  args:
+    chdir: /tmp/git_make/yay
+  become: no
+
+...

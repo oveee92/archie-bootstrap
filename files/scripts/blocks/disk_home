@@ -1,0 +1,16 @@
+#!/bin/sh
+
+path=/home
+
+icon="$1"
+[ -z "$1" ] && icon="$path"
+
+case $BLOCK_BUTTON in
+	1) pgrep -x dunst >/dev/null && notify-send "💽 Disk space" "$(df -h --output=target,used,size)" ;;
+	3) pgrep -x dunst >/dev/null && notify-send "💽 Disk module" "\- Shows used hard drive space.
+- Click to show all disk info." ;;
+esac
+
+echo "$(df -h "$path" | awk ' /[0-9]/ {print $3 "/" $2}')"
+
+

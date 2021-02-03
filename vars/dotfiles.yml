@@ -1,0 +1,20 @@
+---
+dotfiles_configuration:
+  - dotfile_name: dotfiles/i3_config
+    to_directory: "/home/{{ user }}/.config/i3/config"
+  - dotfile_name: dotfiles/redshift.conf
+    to_directory: "/home/{{ user }}/.config/redshift.conf"
+  - dotfile_name: dotfiles/tmux.conf
+    to_directory: "/home/{{ user }}/.tmux.conf"
+  - dotfile_name: dotfiles/vimrc
+    to_directory: "/home/{{ user }}/.config/.vimrc"
+  - dotfile_name: dotfiles/profile
+    to_directory: "/home/{{ user }}/.profile"
+  - dotfile_name: dotfiles/bashrc
+    to_directory: "/home/{{ user }}/.bashrc"
+  - dotfile_name: dotfiles/dunstrc
+    to_directory: "/home/{{ user }}/.config/dunst/dunstrc"
+  - dotfile_name: dotfiles/i3blocks_config
+    to_directory: "/home/{{ user }}/.config/i3blocks/config"
+  - dotfile_name: dotfiles/calcurse_conf
+    to_directory: "/home/{{ user }}/.config/calcurse/conf"
